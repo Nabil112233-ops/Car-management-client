@@ -1,10 +1,10 @@
 import React from 'react';
+import HeroSlider from '../Components/HeroSlider';
 
 const Home = () => {
     return (
         <div>
-            <h1>Welcome to CarHub</h1>
-            <p>Your one-stop solution for car management.</p>
+            <HeroSlider></HeroSlider>
         </div>
     );
 };
