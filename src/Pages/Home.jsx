@@ -3,6 +3,7 @@ import HeroSlider from '../Components/HeroSlider';
 import FeaturedCar from '../Components/FeaturedCar';
 import WhyRentWithUs from '../Components/RentWithUs';
 import BookingProcess from '../Components/BookingSys';
+import CustomerFeedback from '../Components/Feedback';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <FeaturedCar></FeaturedCar>
             <WhyRentWithUs></WhyRentWithUs>
             <BookingProcess></BookingProcess>
+            <CustomerFeedback></CustomerFeedback>
         </div>
     );
 };
