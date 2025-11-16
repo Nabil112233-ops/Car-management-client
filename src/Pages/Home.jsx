@@ -4,6 +4,7 @@ import FeaturedCar from '../Components/FeaturedCar';
 import WhyRentWithUs from '../Components/RentWithUs';
 import BookingProcess from '../Components/BookingSys';
 import CustomerFeedback from '../Components/Feedback';
+import LatestBlog from '../Components/LatestBlog';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <WhyRentWithUs></WhyRentWithUs>
             <BookingProcess></BookingProcess>
             <CustomerFeedback></CustomerFeedback>
+            <LatestBlog></LatestBlog>
         </div>
     );
 };
