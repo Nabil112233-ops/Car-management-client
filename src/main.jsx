@@ -1,12 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MainLayout from './Layouts/MainLayout.jsx';
 import Home from './Pages/Home.jsx';
 import BrowseCar from './Pages/BrowseCar.jsx';
+import Login from './Pages/Login.jsx';
+import AuthProvider from './Components/Provider/AuthProvider.jsx';
+import Register from './Pages/Register.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: '/browse-cars',
         element: <BrowseCar></BrowseCar>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
       }
     ]
   }
@@ -27,8 +37,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-
-    </RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )
