@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/Beige_Black_Simple_Modern_Car_Rental_Logo-removebg-preview.png';
+import { Link } from 'react-router';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -9,20 +10,22 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
                 {/* Left Logo */}
-                <div className='flex items-center'>
-                    <img className='w-14 h-14' src={logo} alt="HireGari Logo" />
-                    <div className="text-xl font-bold cursor-pointer">
-                        HireGari
-                    </div>
+                <div>
+                    <Link to="/" className='flex items-center'>
+                        <img className='w-14 h-14' src={logo} alt="HireGari Logo" />
+                        <div className="text-xl font-bold cursor-pointer">
+                            HireGari
+                        </div>
+                    </Link>
                 </div>
 
                 {/* Middle Desktop Menu */}
                 <div className="hidden md:flex gap-6 text-lg">
-                    <span className="hover:text-blue-500 cursor-pointer">Home</span>
+                    <Link to="/" className="hover:text-blue-500 cursor-pointer">Home</Link>
                     <span className="hover:text-blue-500 cursor-pointer">Add Car</span>
                     <span className="hover:text-blue-500 cursor-pointer">My Listings</span>
                     <span className="hover:text-blue-500 cursor-pointer">My Bookings</span>
-                    <span className="hover:text-blue-500 cursor-pointer">Browse Cars</span>
+                    <Link to="/browse-cars" className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
                 </div>
 
                 {/* Right side Profile/Login (dummy only) */}
@@ -60,11 +63,11 @@ const Navbar = () => {
             {/* Mobile Dropdown Menu */}
             {open && (
                 <div className="md:hidden bg-white shadow-md p-4 flex flex-col gap-3 text-lg">
-                    <span className="hover:text-blue-500 cursor-pointer">Home</span>
+                    <Link to='/' className="hover:text-blue-500 cursor-pointer">Home</Link>
                     <span className="hover:text-blue-500 cursor-pointer">Add Car</span>
                     <span className="hover:text-blue-500 cursor-pointer">My Listings</span>
                     <span className="hover:text-blue-500 cursor-pointer">My Bookings</span>
-                    <span className="hover:text-blue-500 cursor-pointer">Browse Cars</span>
+                    <Link to='/browse-cars' className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
 
                     {/* Mobile Profile info */}
                     <div className="flex flex-col gap-2 mt-3">

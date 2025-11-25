@@ -18,7 +18,7 @@ const FeaturedCar = () => {
                     key={_id}
                     className="bg-white shadow-md rounded-xl p-4 flex flex-col"
                 >
-                    <img src={imageURL} alt="" />
+                    <img className='w-[368px] h-[250px] duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all' src={imageURL} alt="" />
                     <h3 className="text-xl font-semibold">{carName}</h3>
 
                     <p className="text-gray-700 mt-2">
