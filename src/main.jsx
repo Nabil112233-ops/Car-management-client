@@ -9,6 +9,7 @@ import BrowseCar from './Pages/BrowseCar.jsx';
 import Login from './Pages/Login.jsx';
 import AuthProvider from './Components/Provider/AuthProvider.jsx';
 import Register from './Pages/Register.jsx';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <ToastContainer />
       <RouterProvider router={router}>
       </RouterProvider>
     </AuthProvider>
