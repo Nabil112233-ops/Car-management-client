@@ -42,7 +42,7 @@ const Navbar = () => {
                         <div className='flex gap-6'>
                             <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
                             <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
-                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
+                            <Link to='/my-booking' className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
                     <Link to="/browse-cars" className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>
@@ -117,7 +117,7 @@ const Navbar = () => {
                         <div className='flex gap-6'>
                             <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
                             <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
-                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
+                            <Link to='/my-booking' className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
                     <Link to='/browse-cars' className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>

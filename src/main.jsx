@@ -14,6 +14,7 @@ import PrivateRoute from './Private Route/PrivateRoute.jsx';
 import CarDetails from './Pages/CarDetails.jsx';
 import AddCar from './Pages/AddCar.jsx';
 import MyListing from './Pages/MyListing/MyListing.jsx';
+import MyBooking from './Pages/MyBooking.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,13 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <MyListing></MyListing>
         </PrivateRoute>
-      }
+      },
+      {
+        path: '/my-booking',
+        element: <PrivateRoute>
+          <MyBooking></MyBooking>
+        </PrivateRoute>
+      },
     ]
   }
 ])

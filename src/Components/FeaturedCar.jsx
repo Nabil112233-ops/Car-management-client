@@ -12,12 +12,15 @@ const FeaturedCar = () => {
     }, []);
 
     const cardCars = cars.map(car => {
-        const { carName, _id, imageURL, rentPrice, category, providerName } = car;
+        const { carName, _id, imageURL, rentPrice, category, providerName, status } = car;
         return (
                 <div
                     key={_id}
-                    className="bg-white shadow-md rounded-xl p-4 flex flex-col"
+                    className="bg-white shadow-md rounded-xl p-4 flex flex-col relative"
                 >
+                    <span className={`absolute top-5 right-5 text-xs font-semibold px-3 py-1 rounded-full ${status === "available" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                        {status}
+                    </span>
                     <img className='w-[368px] h-[250px] duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all' src={imageURL} alt="" />
                     <h3 className="text-xl font-semibold">{carName}</h3>
 

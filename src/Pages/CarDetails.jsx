@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { motion } from "framer-motion";
+import { AuthContext } from '../Components/Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const CarDetails = () => {
 
     const { id } = useParams();
     const [cars, setCars] = useState([]);
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         fetch(`http://localhost:5000/car/${id}`)
@@ -15,7 +18,43 @@ const CarDetails = () => {
 
     const { carName, description, category, rentPrice, location, imageURL, providerName, providerEmail, status } = cars;
 
-    console.log(cars)
+    const handleBook = () => {
+        const bookingInfo = {
+            carID: id,
+            carName,
+            imageURL,
+            rentPrice,
+            providerEmail,
+            bookedBy: user?.email,
+            date: new Date().toLocaleString()
+        }
+
+        fetch('http://localhost:5000/car-booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Car booked successfully!')
+
+                    fetch(`http://localhost:5000/update-status/${id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: 'unavailable' })
+                    })
+                        .then(res => res.json())
+                        .then(() => {
+                            setCars(prev => ({ ...prev, status: 'unavailable' }))
+                        })
+                }
+            })
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 py-10 px-4 relative overflow-hidden">
@@ -90,8 +129,12 @@ const CarDetails = () => {
                     <motion.button
                         whileHover={{ scale: 1.07, boxShadow: "0 0 20px #60a5fa" }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-full mt-6 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 
-            text-white font-semibold text-xl shadow-xl hover:shadow-purple-300/60 transition-all"
+                        onClick={handleBook}
+                        disabled={status === 'unavailable'}
+                        className={`w-full mt-6 py-4 rounded-xl text-white font-semibold text-xl shadow-xl transition-all 
+                            ${status === "unavailable"
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-gradient-to-r from-blue-500 to-purple-500 hover:shadow-purple-300/60"}`}
                     >
                         Book Now
                     </motion.button>
