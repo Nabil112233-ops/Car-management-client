@@ -2,13 +2,27 @@
 @plugin "daisyui";
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fadeIn {
@@ -17,4 +31,25 @@
 
 .animate-slideUp {
   animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes glow-light {
+  0% {
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4),
+      0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6),
+      0 0 40px rgba(59, 130, 246, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4),
+      0 0 20px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.animate-glow-light {
+  animation: glow-light 3s infinite ease-in-out;
 }

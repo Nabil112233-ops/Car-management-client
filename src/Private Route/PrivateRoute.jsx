@@ -15,10 +15,10 @@ const PrivateRoute = ({ children }) => {
             </div>
         </div>
     }
-    if (user && user.emailVarified) {
+    if (user) {
         return children;
     }
-    return <Navigate to='/login' state={{ from: location }} ></Navigate>
+    return <Navigate to='/login' state={{ from: location.pathname }} ></Navigate>
 
 };
 

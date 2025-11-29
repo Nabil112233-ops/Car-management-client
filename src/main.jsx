@@ -10,6 +10,8 @@ import Login from './Pages/Login.jsx';
 import AuthProvider from './Components/Provider/AuthProvider.jsx';
 import Register from './Pages/Register.jsx';
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './Private Route/PrivateRoute.jsx';
+import CarDetails from './Pages/CarDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,12 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/car/:id',
+        element: <PrivateRoute>
+          <CarDetails></CarDetails>
+        </PrivateRoute>
       }
     ]
   }

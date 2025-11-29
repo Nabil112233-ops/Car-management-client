@@ -37,9 +37,14 @@ const Navbar = () => {
                 {/* Middle Desktop Menu */}
                 <div className="hidden md:flex gap-6 text-lg">
                     <Link to="/" className="hover:text-blue-500 cursor-pointer">Home</Link>
-                    <span className="hover:text-blue-500 cursor-pointer">Add Car</span>
-                    <span className="hover:text-blue-500 cursor-pointer">My Listings</span>
-                    <span className="hover:text-blue-500 cursor-pointer">My Bookings</span>
+                    {
+                        user &&
+                        <div className='flex gap-6'>
+                            <Link className="hover:text-blue-500 cursor-pointer">Add Car</Link>
+                            <Link className="hover:text-blue-500 cursor-pointer">My Listings</Link>
+                            <Link className="hover:text-blue-500 cursor-pointer">My Bookings</Link>
+                        </div>
+                    }
                     <Link to="/browse-cars" className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
                 </div>
 
@@ -107,9 +112,14 @@ const Navbar = () => {
             {open && (
                 <div className="md:hidden bg-white shadow-md p-4 flex flex-col gap-3 text-lg">
                     <Link to='/' className="hover:text-blue-500 cursor-pointer">Home</Link>
-                    <span className="hover:text-blue-500 cursor-pointer">Add Car</span>
-                    <span className="hover:text-blue-500 cursor-pointer">My Listings</span>
-                    <span className="hover:text-blue-500 cursor-pointer">My Bookings</span>
+                    {
+                        user &&
+                        <div className='flex gap-6'>
+                            <Link className="hover:text-blue-500 cursor-pointer">Add Car</Link>
+                            <Link className="hover:text-blue-500 cursor-pointer">My Listings</Link>
+                            <Link className="hover:text-blue-500 cursor-pointer">My Bookings</Link>
+                        </div>
+                    }
                     <Link to='/browse-cars' className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
 
                     {/* Mobile Profile info */}
