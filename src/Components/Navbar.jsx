@@ -36,16 +36,16 @@ const Navbar = () => {
 
                 {/* Middle Desktop Menu */}
                 <div className="hidden md:flex gap-6 text-lg">
-                    <Link to="/" className="hover:text-blue-500 cursor-pointer">Home</Link>
+                    <Link to="/" className="hover:text-blue-500 font-bold cursor-pointer">Home</Link>
                     {
                         user &&
                         <div className='flex gap-6'>
-                            <Link className="hover:text-blue-500 cursor-pointer">Add Car</Link>
-                            <Link className="hover:text-blue-500 cursor-pointer">My Listings</Link>
-                            <Link className="hover:text-blue-500 cursor-pointer">My Bookings</Link>
+                            <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
+                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
+                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
-                    <Link to="/browse-cars" className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
+                    <Link to="/browse-cars" className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>
                 </div>
 
                 {/* Right side Profile/Login (dummy only) */}
@@ -111,16 +111,16 @@ const Navbar = () => {
             {/* Mobile Dropdown Menu */}
             {open && (
                 <div className="md:hidden bg-white shadow-md p-4 flex flex-col gap-3 text-lg">
-                    <Link to='/' className="hover:text-blue-500 cursor-pointer">Home</Link>
+                    <Link to='/' className="hover:text-blue-500 font-bold cursor-pointer">Home</Link>
                     {
                         user &&
                         <div className='flex gap-6'>
-                            <Link className="hover:text-blue-500 cursor-pointer">Add Car</Link>
-                            <Link className="hover:text-blue-500 cursor-pointer">My Listings</Link>
-                            <Link className="hover:text-blue-500 cursor-pointer">My Bookings</Link>
+                            <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
+                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
+                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
-                    <Link to='/browse-cars' className="hover:text-blue-500 cursor-pointer">Browse Cars</Link>
+                    <Link to='/browse-cars' className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>
 
                     {/* Mobile Profile info */}
                     {
