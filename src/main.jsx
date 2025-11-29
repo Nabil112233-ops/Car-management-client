@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './Private Route/PrivateRoute.jsx';
 import CarDetails from './Pages/CarDetails.jsx';
 import AddCar from './Pages/AddCar.jsx';
+import MyListing from './Pages/MyListing/MyListing.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,12 @@ const router = createBrowserRouter([
         path: '/add-car',
         element: <PrivateRoute>
           <AddCar></AddCar>
+        </PrivateRoute>
+      },
+      {
+        path: '/my-listings',
+        element: <PrivateRoute>
+          <MyListing></MyListing>
         </PrivateRoute>
       }
     ]

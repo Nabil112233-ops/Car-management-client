@@ -41,7 +41,7 @@ const Navbar = () => {
                         user &&
                         <div className='flex gap-6'>
                             <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
-                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
+                            <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
                             <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
@@ -116,7 +116,7 @@ const Navbar = () => {
                         user &&
                         <div className='flex gap-6'>
                             <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
-                            <Link className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
+                            <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
                             <Link className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
                         </div>
                     }
