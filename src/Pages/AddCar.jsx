@@ -20,6 +20,7 @@ const AddCar = () => {
             rentPrice: form.rentPrice.value,
             location: form.location.value,
             imageURL: form.imageURL.value,
+            status: 'available',
             providerName: user?.displayName,
             providerEmail: user?.email
         }

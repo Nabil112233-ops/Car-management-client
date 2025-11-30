@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const Deleted = ({ car, setDeleteCar, setCars }) => {
 
@@ -9,6 +10,7 @@ const Deleted = ({ car, setDeleteCar, setCars }) => {
             .then(res => res.json())
             .then(() => {
                 setCars(prevCars => prevCars.filter(c => c._id !== car._id))
+                toast.success('Car deleted successfully!');
                 setDeleteCar(null);
             })
     }

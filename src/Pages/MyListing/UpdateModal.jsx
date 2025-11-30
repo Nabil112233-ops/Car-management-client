@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Update = ({ car, setCars, setSelectedCar }) => {
 
     const [formData, setFormData] = useState(car)
+
+    const { _id, ...rest } = formData;
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -11,12 +14,17 @@ const Update = ({ car, setCars, setSelectedCar }) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(rest)
         })
             .then(res => res.json())
             .then(() => {
                 setCars(prev => prev.map(c => c._id === car._id ? { ...c, ...formData } : c))
                 setSelectedCar(null)
+                toast.success('Car updated successfully!');
+            })
+            .catch((e) => {
+                toast.error('Failed to update car. Please try again.');
+                console.log(e)
             })
     }
 

@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import Loading from './Loading/Loading';
 
 const FeaturedCar = () => {
 
     const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/featuredCars')
             .then(res => res.json())
             .then(data => setCars(data))
+            .finally(() => setLoading(false));
     }, []);
+
+    if (loading) {
+        return <div className='grid grid-cols-1 gap-6'>
+            <Loading></Loading>
+        </div>
+    }
 
     const cardCars = cars.map(car => {
         const { carName, _id, imageURL, rentPrice, category, providerName, status } = car;

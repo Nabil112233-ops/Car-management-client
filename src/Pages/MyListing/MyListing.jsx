@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Components/Provider/AuthProvider';
-import UpdateModal from './Update';
-import DeleteModal from './Deleted';
+import UpdateModal from './UpdateModal';
+import ConfirmDeleteModal from './Deleted';
 import { Link } from 'react-router';
 
 const MyListing = () => {
@@ -101,12 +101,12 @@ const MyListing = () => {
 
             {/* 🔥 Update Modal */}
             {selectedCar && (
-                <UpdateModal car={selectedCar} close={() => setSelectedCar(null)} />
+                <UpdateModal car={selectedCar} setCars={setCars} setSelectedCar={setSelectedCar} />
             )}
 
             {/* 🔥 Delete Modal */}
             {deleteCar && (
-                <ConfirmDeleteModal car={deleteCar} close={() => setDeleteCar(null)} />
+                <ConfirmDeleteModal car={deleteCar} setCars={setCars} setDeleteCar={setDeleteCar} />
             )}
         </div>
     );

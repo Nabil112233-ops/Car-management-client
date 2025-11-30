@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import logo from '../assets/Beige_Black_Simple_Modern_Car_Rental_Logo-removebg-preview.png';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { AuthContext } from './Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
@@ -21,31 +21,51 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="bg-white shadow-md sticky top-0 z-50">
+        <nav className="bg-gradient-to-r from-blue-100 via-white to-blue-100 backdrop-blur-lg border-b border-white/30 shadow-md sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
                 {/* Left Logo */}
                 <div>
-                    <Link to="/" className='flex items-center'>
+                    <NavLink to="/" className='flex items-center'>
                         <img className='w-14 h-14' src={logo} alt="HireGari Logo" />
                         <div className="text-xl font-bold cursor-pointer">
                             HireGari
                         </div>
-                    </Link>
+                    </NavLink>
                 </div>
 
                 {/* Middle Desktop Menu */}
                 <div className="hidden md:flex gap-6 text-lg">
-                    <Link to="/" className="hover:text-blue-500 font-bold cursor-pointer">Home</Link>
+                    <NavLink to="/" className={({ isActive }) =>
+                        isActive
+                            ? "text-blue-500 font-semibold shadow-md px-1 cursor-pointer"
+                            : "hover:text-blue-500 font-semibold cursor-pointer"
+                    }>Home</NavLink>
                     {
                         user &&
                         <div className='flex gap-6'>
-                            <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
-                            <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
-                            <Link to='/my-booking' className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
+                            <NavLink to='/add-car' className={({ isActive }) =>
+                                isActive
+                                    ? "text-blue-500 font-semibold shadow-md px-1 cursor-pointer"
+                                    : "hover:text-blue-500 font-semibold cursor-pointer"
+                            }>Add Car</NavLink>
+                            <NavLink to='/my-listings' className={({ isActive }) =>
+                                isActive
+                                    ? "text-blue-500 font-semibold shadow-md px-1 cursor-pointer"
+                                    : "hover:text-blue-500 font-semibold cursor-pointer"
+                            }>My Listings</NavLink>
+                            <NavLink to='/my-booking' className={({ isActive }) =>
+                                isActive
+                                    ? "text-blue-500 font-semibold shadow-md px-1 cursor-pointer"
+                                    : "hover:text-blue-500 font-semibold cursor-pointer"
+                            }>My Bookings</NavLink>
                         </div>
                     }
-                    <Link to="/browse-cars" className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>
+                    <NavLink to="/browse-cars" className={({ isActive }) =>
+                        isActive
+                            ? "text-blue-500 font-semibold shadow-md px-1 cursor-pointer"
+                            : "hover:text-blue-500 font-semibold cursor-pointer"
+                    }>Browse Cars</NavLink>
                 </div>
 
                 {/* Right side Profile/Login (dummy only) */}
@@ -94,11 +114,6 @@ const Navbar = () => {
                     }
                 </div>
 
-
-                <div>
-
-                </div>
-
                 {/* Mobile menu button */}
                 <button
                     className="md:hidden text-2xl"
@@ -111,16 +126,16 @@ const Navbar = () => {
             {/* Mobile Dropdown Menu */}
             {open && (
                 <div className="md:hidden bg-white shadow-md p-4 flex flex-col gap-3 text-lg">
-                    <Link to='/' className="hover:text-blue-500 font-bold cursor-pointer">Home</Link>
+                    <Link to='/' className="hover:text-blue-500 font-semibold cursor-pointer">Home</Link>
                     {
                         user &&
                         <div className='flex gap-6'>
-                            <Link to='/add-car' className="hover:text-blue-500 font-bold cursor-pointer">Add Car</Link>
-                            <Link to='/my-listings' className="hover:text-blue-500 font-bold cursor-pointer">My Listings</Link>
-                            <Link to='/my-booking' className="hover:text-blue-500 font-bold cursor-pointer">My Bookings</Link>
+                            <Link to='/add-car' className="hover:text-blue-500 font-semibold cursor-pointer">Add Car</Link>
+                            <Link to='/my-listings' className="hover:text-blue-500 font-semibold cursor-pointer">My Listings</Link>
+                            <Link to='/my-booking' className="hover:text-blue-500 font-semibold cursor-pointer">My Bookings</Link>
                         </div>
                     }
-                    <Link to='/browse-cars' className="hover:text-blue-500 font-bold cursor-pointer">Browse Cars</Link>
+                    <Link to='/browse-cars' className="hover:text-blue-500 font-semibold cursor-pointer">Browse Cars</Link>
 
                     {/* Mobile Profile info */}
                     {

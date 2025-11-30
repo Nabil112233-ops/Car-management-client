@@ -15,6 +15,7 @@ import CarDetails from './Pages/CarDetails.jsx';
 import AddCar from './Pages/AddCar.jsx';
 import MyListing from './Pages/MyListing/MyListing.jsx';
 import MyBooking from './Pages/MyBooking.jsx';
+import NotFound from './Pages/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
           <MyBooking></MyBooking>
         </PrivateRoute>
       },
+      {
+        path: '*',
+        element: <NotFound></NotFound>
+      }
     ]
   }
 ])

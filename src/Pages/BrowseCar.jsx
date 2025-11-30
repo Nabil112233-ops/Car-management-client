@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import Loading from '../Components/Loading/Loading';
 
 const BrowseCar = () => {
 
     const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/browse-cars')
             .then(res => res.json())
             .then(data => setCars(data))
+            .finally(() => setLoading(false));
     }, [])
 
-
+    if(loading) {
+        return <div className='grid grid-cols-1 gap-6'>
+            <Loading></Loading>
+        </div>
+    }
 
     return (
         <section className='py-10 px-4 max-w-7xl mx-auto'>

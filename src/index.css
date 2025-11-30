@@ -1,6 +1,31 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+.pt-sans-regular {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-sans-bold {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-sans-regular-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.pt-sans-bold-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -73,4 +98,39 @@
 
 .animate-glow-light {
   animation: glow-light 3s infinite ease-in-out;
+}
+
+@keyframes carGlow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+    opacity: 0.7;
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.5));
+    opacity: 1;
+  }
+
+  100% {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+    opacity: 0.7;
+  }
+}
+
+@keyframes roadMove {
+  0% {
+    transform: translateX(-100%) scaleX(1.2);
+  }
+
+  100% {
+    transform: translateX(100%) scaleX(1.2);
+  }
+}
+
+.animate-car-glow {
+  animation: carGlow 2s infinite ease-in-out;
+}
+
+.animate-road {
+  animation: roadMove 1.1s infinite linear;
 }
