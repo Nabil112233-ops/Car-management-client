@@ -5,8 +5,6 @@ import WhyRentWithUs from '../Components/RentWithUs';
 import BookingProcess from '../Components/BookingSys';
 import CustomerFeedback from '../Components/Feedback';
 import LatestBlog from '../Components/LatestBlog';
-import SearchImplement from '../Components/SearchImplement';
-
 const Home = () => {
     return (
         <div>
