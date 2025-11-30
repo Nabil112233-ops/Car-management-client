@@ -1,19 +1,16 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { API } from '../../sevices/api';
 
 const Deleted = ({ car, setDeleteCar, setCars }) => {
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/delete-car/${car._id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(() => {
-                setCars(prevCars => prevCars.filter(c => c._id !== car._id))
-                toast.success('Car deleted successfully!');
-                setDeleteCar(null);
-            })
-    }
+        API.deleteCar(car._id).then(() => {
+            setCars((prev) => prev.filter((c) => c._id !== car._id));
+            toast.success("Car deleted successfully!");
+            setDeleteCar(null);
+        });
+    };
 
     return (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex justify-center items-center animate-fadeIn">

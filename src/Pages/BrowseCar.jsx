@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import Loading from '../Components/Loading/Loading';
+import { API } from '../sevices/api';
 
-const BrowseCar = () => {
-
+const BrowseCars = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/browse-cars')
-            .then(res => res.json())
-            .then(data => setCars(data))
+        API.getBrowseCars()
+            .then(setCars)
             .finally(() => setLoading(false));
-    }, [])
+    }, []);
 
-    if(loading) {
-        return <div className='grid grid-cols-1 gap-6'>
-            <Loading></Loading>
-        </div>
-    }
+    if (loading) return <Loading />;
 
     return (
         <section className='py-10 px-4 max-w-7xl mx-auto'>

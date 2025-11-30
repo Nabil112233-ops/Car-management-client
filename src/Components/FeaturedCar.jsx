@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import Loading from './Loading/Loading';
-import { API_BASE_URL } from '../config';
+import { API } from '../sevices/api';
 
-const FeaturedCar = () => {
+const FeaturedCars = () => {
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const [cars, setCars] = useState([]);
-    const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    API.getFeatured()
+      .then(setCars)
+      .finally(() => setLoading(false));
+  }, []);
 
-    fetch(`${API_BASE_URL}/featuredCars`)
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.error(err));
-
-    useEffect(() => {
-        fetch('http://localhost:5000/featuredCars')
-            .then(res => res.json())
-            .then(data => setCars(data))
-            .finally(() => setLoading(false));
-    }, []);
-
-    if (loading) {
-        return <div className='grid grid-cols-1 gap-6'>
-            <Loading></Loading>
-        </div>
-    }
+  if (loading) return <Loading />;
 
 
 

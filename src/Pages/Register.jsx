@@ -2,63 +2,53 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { Link } from 'react-router';
+import { API } from '../sevices/api';
 
 const Register = () => {
-
-    const { createUser, googleSignIn } = useContext(AuthContext)
+    const { createUser, googleSignIn } = useContext(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault();
-
         const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photo = form.photo.value;
-        const password = form.password.value;
 
-        console.log(name, email, photo, password);
+        const userInfo = {
+            name: form.name.value,
+            email: form.email.value,
+            photo: form.photo.value,
+            password: form.password.value,
+        };
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-        if (!regex.test(password)) {
-            return toast.error('Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number.');
+        if (!regex.test(userInfo.password)) {
+            return toast.error(
+                "Password must have 6 chars including uppercase, lowercase & number."
+            );
         }
 
-        createUser(email, password)
-            .then(res => {
-                console.log(res)
-                toast.success('User registered successfully!');
-                fetch('http://localhost:5000/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name, email, photo, password })
-                })
+        createUser(userInfo.email, userInfo.password)
+            .then(() => {
+                toast.success("User registered successfully!");
+                API.register(userInfo);
                 form.reset();
             })
-            .catch(() => {
-                // console.log('error', error.code)
-                toast.error('Registration failed. Please try again.');
-            });
-    }
+            .catch(() => toast.error("Registration failed."));
+    };
+
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then(res => {
-                toast.success('Logged in with Google successfully!');
-                console.log(res)
-                fetch('http://localhost:5000/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name: res.user.displayName, email: res.user.email, photo: res.user.photoURL })
-                })
+            .then((res) => {
+                const googleUser = {
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photo: res.user.photoURL,
+                };
+
+                toast.success("Logged in with Google!");
+                API.register(googleUser);
             })
-            .catch(() => {
-                toast.error('Google sign-in failed. Please try again.');
-            })
-    }
+            .catch(() => toast.error("Google sign-in failed."));
+    };
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
             <div className="w-full max-w-md bg-white/10 backdrop-blur-xl 

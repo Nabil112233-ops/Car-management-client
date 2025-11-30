@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { motion } from "framer-motion";
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { API } from '../sevices/api';
 
 const AddCar = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
 
     const handleAddCar = (e) => {
@@ -20,28 +21,20 @@ const AddCar = () => {
             rentPrice: form.rentPrice.value,
             location: form.location.value,
             imageURL: form.imageURL.value,
-            status: 'available',
+            status: "available",
             providerName: user?.displayName,
-            providerEmail: user?.email
-        }
+            providerEmail: user?.email,
+        };
 
-        fetch('http://localhost:5000/add-car', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newCar)
-        })
-            .then(res => res.json())
-            .then(data => {
-                setLoading(false)
-                if (data.insertedId) {
-                    toast.success('Your car has been added successfully!');
-                    form.reset();
-                }
-            })
+        API.addCar(newCar).then((res) => {
+            setLoading(false);
+            if (res.insertedId) {
+                toast.success("Car added successfully!");
+                form.reset();
+            }
+        });
+    };
 
-    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">

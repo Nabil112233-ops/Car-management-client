@@ -4,15 +4,13 @@ import { motion } from "framer-motion";
 
 const MyBooking = () => {
 
-    const { user } = useContext(AuthContext)
-    const [bookings, setBookings] = useState([])
+    const { user } = useContext(AuthContext);
+    const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-bookings/${user.email}`)
-            .then(res => res.json())
-            .then(data => setBookings(data))
-            .catch(err => console.log(err))
-    }, [user?.email])
+        if (!user?.email) return;
+        API.getMyBookings(user.email).then(setBookings);
+    }, [user?.email]);
 
 
     return (

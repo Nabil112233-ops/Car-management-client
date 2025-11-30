@@ -1,3 +1,3 @@
 export const API_BASE_URL = import.meta.env.PROD
-    ? 'https://car-management-server-iurf.vercel.app' 
+    ? 'https://car-management-server-iurf.vercel.app/api' 
     : 'http://localhost:5000';

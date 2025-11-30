@@ -3,19 +3,18 @@ import { AuthContext } from '../../Components/Provider/AuthProvider';
 import UpdateModal from './UpdateModal';
 import ConfirmDeleteModal from './Deleted';
 import { Link } from 'react-router';
+import { API } from '../../sevices/api';
 
-const MyListing = () => {
-
-    const { user } = useContext(AuthContext)
-    const [cars, setCars] = useState([])
+const MyListings = () => {
+    const { user } = useContext(AuthContext);
+    const [cars, setCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
     const [deleteCar, setDeleteCar] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-listings?providerEmail=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setCars(data))
-    }, [user])
+        if (!user?.email) return;
+        API.getMyListings(user.email).then(setCars);
+    }, [user]);
 
 
     return (
@@ -69,8 +68,8 @@ const MyListing = () => {
                                     <td className="py-3 px-4">
                                         <span
                                             className={`px-3 py-1 rounded-full text-sm ${car.status === "Booked"
-                                                    ? "bg-red-100 text-red-600"
-                                                    : "bg-green-100 text-green-600"
+                                                ? "bg-red-100 text-red-600"
+                                                : "bg-green-100 text-green-600"
                                                 }`}
                                         >
                                             {car.status}
@@ -112,4 +111,4 @@ const MyListing = () => {
     );
 };
 
-export default MyListing;
+export default MyListings;

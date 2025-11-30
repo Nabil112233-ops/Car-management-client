@@ -1,33 +1,22 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { API } from '../../sevices/api';
 
 const Update = ({ car, setCars, setSelectedCar }) => {
 
-    const [formData, setFormData] = useState(car)
-
-    const { _id, ...rest } = formData;
+    const [formData, setFormData] = useState(car);
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/update-car/${car._id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(rest)
-        })
-            .then(res => res.json())
-            .then(() => {
-                setCars(prev => prev.map(c => c._id === car._id ? { ...c, ...formData } : c))
-                setSelectedCar(null)
-                toast.success('Car updated successfully!');
-            })
-            .catch((e) => {
-                toast.error('Failed to update car. Please try again.');
-                console.log(e)
-            })
-    }
 
+        API.updateCar(car._id, formData).then(() => {
+            setCars((prev) =>
+                prev.map((c) => (c._id === car._id ? formData : c))
+            );
+            setSelectedCar(null);
+            toast.success("Car updated successfully!");
+        });
+    };
 
     return (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex justify-center items-center animate-fadeIn">

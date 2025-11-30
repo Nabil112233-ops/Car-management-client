@@ -3,58 +3,41 @@ import { useParams } from 'react-router';
 import { motion } from "framer-motion";
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { API } from '../sevices/api';
 
 const CarDetails = () => {
 
     const { id } = useParams();
-    const [cars, setCars] = useState([]);
-    const { user } = useContext(AuthContext)
+    const [car, setCar] = useState({});
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/car/${id}`)
-            .then(res => res.json())
-            .then(data => setCars(data))
-    }, [id])
+        API.apiClient(`/car/${id}`).then(setCar);
+    }, [id]);
 
-    const { carName, description, category, rentPrice, location, imageURL, providerName, providerEmail, status } = cars;
+    const { carName, description, category, rentPrice, location, imageURL, status, providerName, providerEmail } = car;
 
     const handleBook = () => {
         const bookingInfo = {
             carID: id,
-            carName,
-            imageURL,
-            rentPrice,
-            providerEmail,
+            carName: car.carName,
+            imageURL: car.imageURL,
+            rentPrice: car.rentPrice,
+            providerEmail: car.providerEmail,
             bookedBy: user?.email,
-            date: new Date().toLocaleString()
-        }
+            date: new Date().toLocaleString(),
+        };
 
-        fetch('http://localhost:5000/car-booking', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(bookingInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    toast.success('Car booked successfully!')
+        API.carBooking(bookingInfo).then((res) => {
+            if (res.insertedId) {
+                toast.success("Car booked successfully!");
 
-                    fetch(`http://localhost:5000/update-status/${id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ status: 'unavailable' })
-                    })
-                        .then(res => res.json())
-                        .then(() => {
-                            setCars(prev => ({ ...prev, status: 'unavailable' }))
-                        })
-                }
-            })
-    }
+                API.updateCarStatus(id, { status: "unavailable" }).then(() => {
+                    setCar((prev) => ({ ...prev, status: "unavailable" }));
+                });
+            }
+        });
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 py-10 px-4 relative overflow-hidden">
