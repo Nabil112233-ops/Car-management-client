@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroSlider from '../Components/HeroSlider';
-import FeaturedCar from '../Components/FeaturedCar';
+import FeaturedCars from '../Components/FeaturedCars';
 import WhyRentWithUs from '../Components/RentWithUs';
 import BookingProcess from '../Components/BookingSys';
 import CustomerFeedback from '../Components/Feedback';
@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
             <HeroSlider></HeroSlider>
-            <FeaturedCar></FeaturedCar>
+            <FeaturedCars></FeaturedCars>
             <WhyRentWithUs></WhyRentWithUs>
             <BookingProcess></BookingProcess>
             <CustomerFeedback></CustomerFeedback>

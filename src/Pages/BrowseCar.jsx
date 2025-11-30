@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Loading from '../Components/Loading/Loading';
 import { API } from '../sevices/api';
 
-const BrowseCars = () => {
+const BrowseCar = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
 

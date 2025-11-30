@@ -56,4 +56,4 @@ const FeaturedCars = () => {
     )
 };
 
-export default FeaturedCar;
+export default FeaturedCars;
