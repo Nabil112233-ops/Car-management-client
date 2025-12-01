@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@media (max-width: 640px) {
+
+  body,
+  html {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}
 
 .pt-sans-regular {
   font-family: "PT Sans", sans-serif;
