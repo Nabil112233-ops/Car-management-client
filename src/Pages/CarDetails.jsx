@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { API } from '../sevices/api';
+import { apiClient } from '../apiClient';
 
 const CarDetails = () => {
 
@@ -12,8 +13,9 @@ const CarDetails = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        API.apiClient(`/car/${id}`).then(setCar);
+        apiClient(`/car/${id}`).then(setCar);
     }, [id]);
+    
 
     const { carName, description, category, rentPrice, location, imageURL, status, providerName, providerEmail } = car;
 

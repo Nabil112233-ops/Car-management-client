@@ -13,8 +13,11 @@ const MyListings = () => {
 
     useEffect(() => {
         if (!user?.email) return;
-        API.getMyListings(user.email).then(setCars);
-    }, [user]);
+        API.getMyListings(user.email).then((data) => {
+            console.log('Fetched cars:', data);
+            setCars(data);
+        } );
+    }, [user?.email]);
 
 
     return (

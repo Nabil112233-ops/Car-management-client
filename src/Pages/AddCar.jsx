@@ -28,7 +28,9 @@ const AddCar = () => {
 
         API.addCar(newCar).then((res) => {
             setLoading(false);
-            if (res.insertedId) {
+            console.log('Add car response:', res);
+            if (res.id) {
+                console.log('Car added with ID:', res.id);
                 toast.success("Car added successfully!");
                 form.reset();
             }

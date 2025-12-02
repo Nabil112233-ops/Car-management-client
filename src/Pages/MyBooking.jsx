@@ -7,6 +7,8 @@ const MyBooking = () => {
 
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
+    console.log(bookings);
+    console.log(user?.email);
 
     useEffect(() => {
         if (!user?.email) return;
