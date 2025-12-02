@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { Link } from 'react-router';
 import { API } from '../sevices/api';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 const Register = () => {
     const { createUser, googleSignIn } = useContext(AuthContext);
+    const [showPass, setShowPass] = useState(false)
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -92,15 +94,21 @@ const Register = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className='relative'>
                         <label className="text-white text-sm">Password</label>
                         <input
-                            type="password"
+                            type={showPass ? "text" : "password"}
                             className="w-full mt-1 p-3 rounded-lg bg-gray-200 text-black 
               placeholder-black/70 focus:outline-none focus:ring-2 focus:ring-indigo-300"
                             placeholder="Create password"
                             name='password'
                         />
+                        <span
+                            className="absolute right-3 top-11 text-xl cursor-pointer text-gray-700"
+                            onClick={() => setShowPass(!showPass)}
+                        >
+                            {showPass ? <AiFillEyeInvisible /> : <AiFillEye />}
+                        </span>
                     </div>
 
                     <button className="w-full bg-indigo-500 hover:bg-indigo-600 

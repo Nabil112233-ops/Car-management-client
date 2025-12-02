@@ -1,14 +1,16 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../Components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router';
 import { API } from '../sevices/api';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 const Login = () => {
 
     const emailref = useRef(null)
     const location = useLocation();
     const navigate = useNavigate();
+    const [showPass, setShowPass] = useState(false)
 
     const { signInWithEmail, googleSignIn, setUser } = useContext(AuthContext)
 
@@ -78,15 +80,21 @@ const Login = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className='relative'>
                         <label className="text-black text-sm">Password</label>
                         <input
                             name='password'
-                            type="password"
+                            type={showPass ? "text" : "password"}
                             className="w-full mt-1 p-3 rounded-lg bg-gray-200 text-black  
               placeholder-black/70 focus:outline-none focus:ring-2 focus:ring-indigo-300"
                             placeholder="Enter your password"
                         />
+                        <span
+                            className="absolute right-3 top-11 text-xl cursor-pointer text-gray-700"
+                            onClick={() => setShowPass(!showPass)}
+                        >
+                            {showPass ? <AiFillEyeInvisible /> : <AiFillEye />}
+                        </span>
                     </div>
 
                     <button className="w-full bg-indigo-500 hover:bg-indigo-600 
